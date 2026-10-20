@@ -15,6 +15,14 @@
   const REQUIRED_QUESTIONS = 5;
   let isSubmitting = false;
   let responseTimeout = null;
+  let activeSubmissionId = '';
+  let pendingSubmissionId = '';
+  let pendingPayloadSignature = '';
+
+  function createSubmissionId() {
+    if (window.crypto && typeof window.crypto.randomUUID === 'function') return window.crypto.randomUUID();
+    return `${Date.now().toString(36)}-${Math.random().toString(36).slice(2)}-${Math.random().toString(36).slice(2)}`;
+  }
 
   const faNumber = value => new Intl.NumberFormat('fa-IR').format(value);
 
@@ -252,9 +260,21 @@
   function sendPayload(payload) {
     const endpoint = window.SURVEY_CONFIG?.appsScriptUrl?.trim() || '';
     if (!endpoint || endpoint.includes('PASTE_YOUR_APPS_SCRIPT_WEB_APP_URL_HERE') || !endpoint.includes('/exec')) {
-      showMessage('هنوز نشانی وب‌اپ Google Apps Script تنظیم نشده است. طبق راهنمای README، نشانی منتشرشده‌ای که به /exec ختم می‌شود را در فایل config.js قرار دهید.', 'error');
+      showMessage('هنوز نشانی وب‌اپ Google Apps Script تنظیم نشده است. طبق راهنما، نشانی منتشرشده‌ای که به /exec ختم می‌شود را در فایل config.js قرار دهید.', 'error');
       return false;
     }
+
+    // Reuse the same ID when retrying identical answers. The Apps Script endpoint
+    // uses it to avoid saving a duplicate if the first response was stored but its
+    // acknowledgement was delayed or lost in the cross-origin iframe.
+    const payloadSignature = JSON.stringify(payload.answers);
+    if (!pendingSubmissionId || pendingPayloadSignature !== payloadSignature) {
+      pendingSubmissionId = createSubmissionId();
+      pendingPayloadSignature = payloadSignature;
+    }
+    payload.submissionId = pendingSubmissionId;
+    activeSubmissionId = pendingSubmissionId;
+
     const transport = document.createElement('form');
     transport.method = 'POST';
     transport.action = endpoint;
@@ -271,18 +291,26 @@
     transport.submit();
     window.setTimeout(() => transport.remove(), 1000);
     responseTimeout = window.setTimeout(() => {
+      responseTimeout = null;
       if (!isSubmitting) return;
       setBusy(false);
-      showMessage('از سرور پاسخی دریافت نشد. لطفاً اتصال اینترنت و تنظیم وب‌اپ را بررسی کنید. پیش از ارسال دوباره، برگه پاسخ‌ها را بررسی کنید تا پاسخ تکراری ثبت نشود.', 'error');
-    }, 30000);
+      showMessage('تأیید نهایی ثبت پاسخ هنوز دریافت نشده است. ممکن است پاسخ شما در Google Sheets ثبت شده باشد؛ لطفاً برای جلوگیری از ثبت تکراری، ابتدا برگه «پاسخ‌ها» را بررسی کنید. اگر پاسخ ثبت نشده بود، همین فرم را دوباره ارسال کنید.', 'error');
+    }, 60000);
     return true;
   }
 
   window.addEventListener('message', event => {
-    if (event.source !== responseFrame.contentWindow || !event.data || event.data.type !== 'survey-submit') return;
+    // Apps Script HtmlService may wrap its response in a nested sandboxed iframe,
+    // so event.source is not always the responseFrame itself. Match the one-time
+    // submission ID instead of rejecting the legitimate acknowledgement.
+    const data = event.data;
+    if (!data || data.type !== 'survey-submit' || !data.submissionId || data.submissionId !== activeSubmissionId) return;
     if (responseTimeout) { window.clearTimeout(responseTimeout); responseTimeout = null; }
-    if (event.data.status === 'success') {
+    activeSubmissionId = '';
+    if (data.status === 'success') {
       setBusy(false);
+      pendingSubmissionId = '';
+      pendingPayloadSignature = '';
       showMessage('پاسخ شما با موفقیت ثبت شد. از وقتی که گذاشتید سپاسگزاریم!', 'success');
       form.reset();
       document.querySelectorAll('.category-card').forEach(card => { card.open = false; card.hidden = false; });
@@ -292,10 +320,11 @@
       search.value = '';
       toggleOtherFields();
       updateProgress();
-      window.setTimeout(() => { document.getElementById('submitTitle').scrollIntoView({behavior:'smooth',block:'center'}); }, 150);
+      // Keep the success message in view; scrolling back to the submit heading here
+      // used to move the acknowledgement out of the participant's viewport.
     } else {
       setBusy(false);
-      showMessage('ثبت پاسخ انجام نشد. لطفاً اتصال اینترنت و تنظیم وب‌اپ را بررسی کنید و دوباره تلاش کنید. پاسخ‌های واردشده در فرم باقی مانده‌اند.', 'error');
+      showMessage('ثبت پاسخ انجام نشد. پاسخ‌های واردشده در فرم باقی مانده‌اند؛ لطفاً تنظیم وب‌اپ و دسترسی آن را بررسی کنید و سپس دوباره تلاش کنید.', 'error');
     }
   });
 
