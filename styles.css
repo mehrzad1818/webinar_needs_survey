@@ -41,3 +41,9 @@ img, svg, video, canvas, iframe, input, button, textarea, select { max-width: 10
 @supports not (overflow-x: clip) {
   html, body { overflow-x: hidden; }
 }
+
+
+/* Keep the hero kicker and its decorative line properly aligned. */ .hero-kicker { display: flex; align-items: center; gap: 9px; line-height: 1.6; margin-bottom: 9px; } .kicker-line { display: block; flex: 0 0 24px; width: 24px; height: 2px; background: #67d1c2; border-radius: 2px; } .kicker-text { display: block; min-width: 0; } /* Keep the text readable on smaller screens. */ @media (max-width: 660px) { .hero-kicker { font-size: 10px; align-items: flex-start; } .kicker-line { margin-top: 0.65em; } }
+
+
+
