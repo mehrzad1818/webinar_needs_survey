@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#263b71">
+  <meta name="description" content="فرم نیازسنجی موضوع‌های مورد علاقه شرکت‌کنندگان وبینارهای علمی–آموزشی حوزه زبان">
+  <title>فرم نیازسنجی وبینارهای حوزه زبان</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#surveyForm">رفتن به فرم</a>
+  <header class="topbar">
+    <div class="brand-mark" aria-hidden="true"><span>ل</span></div>
+    <div class="brand-copy">
+      <span class="eyebrow">پرسش‌نامه آنلاین</span>
+      <strong>نیازسنجی برنامه‌های علمی–آموزشی</strong>
+    </div>
+    <span class="topbar-note"><span class="status-dot"></span> بدون نیاز به ورود</span>
+  </header>
+
+  <main class="page-shell">
+    <section class="hero-card" aria-labelledby="pageTitle">
+      <div class="hero-decor hero-decor-one" aria-hidden="true"></div>
+      <div class="hero-decor hero-decor-two" aria-hidden="true"></div>
+      <div class="hero-content">
+        <span class="hero-kicker"><span class="kicker-line"></span> کمیته امور و روابط بین‌الملل</span>
+        <h1 id="pageTitle">فرم نیازسنجی وبینارهای حوزه زبان</h1>
+        <p class="hero-subtitle">سنجش موضوع‌های موردعلاقه شرکت‌کنندگان وبینارهای علمی–آموزشی حوزه زبان</p>
+        <p class="hero-description">این فرم با هدف شناخت بهتر علایق و نیازهای شرکت‌کنندگان در برنامه‌های پژوهشی و آموزشی آنلاین و بهبود موضوع و قالب ارائه وبینارها طراحی شده است. با اختصاص ۳ تا ۵ دقیقه از وقت ارزشمندتان، ما را در برنامه‌ریزی وبینارهای مرتبط و جذاب یاری کنید.</p>
+        <div class="hero-meta">
+          <span><span class="meta-icon" aria-hidden="true">◷</span> حدود ۳ تا ۵ دقیقه</span>
+          <span><span class="meta-icon" aria-hidden="true">☷</span> ۲۲ حوزه موضوعی</span>
+          <span><span class="meta-icon" aria-hidden="true">✓</span> امکان انتخاب چند موضوع</span>
+        </div>
+      </div>
+      <div class="hero-side" aria-hidden="true">
+        <div class="orbit orbit-a"></div><div class="orbit orbit-b"></div>
+        <div class="book-symbol"><span class="book-spine"></span><span class="book-page page-left"></span><span class="book-page page-right"></span></div>
+        <div class="floating-chip chip-a">زبان‌شناسی</div>
+        <div class="floating-chip chip-b">ادبیات</div>
+        <div class="floating-chip chip-c">NLP</div>
+      </div>
+    </section>
+
+    <section class="progress-card" aria-label="پیشرفت پرسش‌نامه">
+      <div class="progress-topline">
+        <div><span class="progress-heading">پاسخ‌گویی شما</span><span id="progressText" class="progress-detail">۰ از ۵ پرسش عمومی ضروری</span></div>
+        <div class="selection-pill"><span id="selectedCount">۰</span><span>موضوع انتخاب‌شده</span></div>
+      </div>
+      <div class="progress-track" aria-hidden="true"><div id="progressBar" class="progress-fill"></div></div>
+      <p class="progress-hint">ابتدا حوزه‌های مورد علاقه‌تان را باز کنید و موضوع‌های دلخواه را علامت بزنید؛ سپس پرسش‌های عمومی را تکمیل کنید.</p>
+    </section>
+
+    <form id="surveyForm" novalidate>
+      <section class="section-block" aria-labelledby="topicsTitle">
+        <div class="section-heading">
+          <div class="section-number">۰۱</div>
+          <div class="section-heading-copy">
+            <span class="section-kicker">بخش اول</span>
+            <h2 id="topicsTitle">نیازسنجی کلی</h2>
+            <p>برای دیدن زیرموضوع‌ها، روی هر حوزه بزنید. می‌توانید از چند حوزه و چند زیرموضوع انتخاب کنید.</p>
+          </div>
+        </div>
+        <div class="topic-tools">
+          <label class="search-box" for="topicSearch"><span class="search-icon" aria-hidden="true">⌕</span><input id="topicSearch" type="search" placeholder="جست‌وجو در حوزه‌ها و زیرموضوع‌ها…" autocomplete="off"><span class="search-shortcut" aria-hidden="true">جست‌وجو</span></label>
+          <div class="topic-tool-buttons"><button type="button" class="text-button" id="expandAll">باز کردن همه</button><span class="tool-divider"></span><button type="button" class="text-button" id="collapseAll">بستن همه</button></div>
+        </div>
+        <div id="categoryGrid" class="category-grid" aria-live="polite"></div>
+        <p id="noSearchResults" class="empty-search" hidden>برای عبارت واردشده موضوعی پیدا نشد.</p>
+        <div class="selection-summary"><div class="summary-icon" aria-hidden="true">✳</div><div><strong>انتخاب آزاد است</strong><p>برای این‌که سلیقه شما دقیق‌تر ثبت شود، فقط موضوع‌هایی را علامت بزنید که واقعاً مایلید در وبینارهای آینده درباره آن‌ها بشنوید. انتخاب موضوع در این بخش اجباری نیست.</p></div></div>
+      </section>
+
+      <section class="section-block general-section" aria-labelledby="generalTitle">
+        <div class="section-heading">
+          <div class="section-number">۰۲</div>
+          <div class="section-heading-copy">
+            <span class="section-kicker">بخش دوم</span>
+            <h2 id="generalTitle">پرسش‌های عمومی</h2>
+            <p>پاسخ به هر پنج پرسش این بخش ضروری است. در پرسش‌های چندانتخابی، بیش از یک گزینه را می‌توانید انتخاب کنید.</p>
+          </div>
+        </div>
+
+        <fieldset class="question-card" data-required-question="1">
+          <legend><span class="question-number">۲۳</span><span class="question-title">قالب موردنظر شما برای یک وبینار چیست؟ <span class="required-star" aria-label="ضروری">*</span></span></legend>
+          <div class="option-grid">
+            <label class="choice-card"><input type="radio" name="webinarFormat" value="ارائه یک‌نفره با بخش پرسش و پاسخ در انتها" required><span class="custom-radio"></span><span class="choice-label">ارائه یک‌نفره با بخش پرسش و پاسخ در انتها</span></label>
+            <label class="choice-card"><input type="radio" name="webinarFormat" value="مصاحبه با پژوهشگر یا استاد"><span class="custom-radio"></span><span class="choice-label">مصاحبه با پژوهشگر یا استاد</span></label>
+            <label class="choice-card"><input type="radio" name="webinarFormat" value="ارائه تعاملی بین چند ارائه‌دهنده"><span class="custom-radio"></span><span class="choice-label">ارائه تعاملی بین چند ارائه‌دهنده</span></label>
+            <label class="choice-card"><input type="radio" name="webinarFormat" value="سایر موارد" data-reveals="formatOther"><span class="custom-radio"></span><span class="choice-label">سایر موارد</span></label>
+          </div>
+          <div id="formatOtherWrap" class="other-answer" hidden><label for="formatOther">قالب پیشنهادی شما</label><input id="formatOther" type="text" maxlength="500" placeholder="قالب دیگری که ترجیح می‌دهید…"></div>
+          <p class="field-error" data-error-for="webinarFormat" hidden>لطفاً یک گزینه انتخاب کنید.</p>
+        </fieldset>
+
+        <fieldset class="question-card" data-required-question="2">
+          <legend><span class="question-number">۲۴</span><span class="question-title">چه دلیلی باعث عدم حضور فعال شما و نپرسیدن سؤال از ارائه‌دهنده می‌شود؟ <span class="required-star" aria-label="ضروری">*</span></span></legend>
+          <p class="question-help">همه گزینه‌های مرتبط را انتخاب کنید.</p>
+          <div class="option-grid">
+            <label class="choice-card"><input type="checkbox" name="barriers" value="چالش در درک موضوع"><span class="custom-check"></span><span class="choice-label">چالش در درک موضوع</span></label>
+            <label class="choice-card"><input type="checkbox" name="barriers" value="مانع زبانی برای طرح پرسش"><span class="custom-check"></span><span class="choice-label">مانع زبانی برای طرح پرسش</span></label>
+            <label class="choice-card"><input type="checkbox" name="barriers" value="زمان نامناسب وبینار"><span class="custom-check"></span><span class="choice-label">زمان نامناسب وبینار</span></label>
+            <label class="choice-card"><input type="checkbox" name="barriers" value="نداشتن اعتمادبه‌نفس کافی"><span class="custom-check"></span><span class="choice-label">نداشتن اعتمادبه‌نفس کافی</span></label>
+            <label class="choice-card"><input type="checkbox" name="barriers" value="سایر موارد" data-reveals="barrierOther"><span class="custom-check"></span><span class="choice-label">سایر موارد</span></label>
+          </div>
+          <div id="barrierOtherWrap" class="other-answer" hidden><label for="barrierOther">توضیح بیشتر</label><input id="barrierOther" type="text" maxlength="500" placeholder="عامل دیگری که بر مشارکت شما اثر می‌گذارد…"></div>
+          <p class="field-error" data-error-for="barriers" hidden>لطفاً دست‌کم یک گزینه انتخاب کنید.</p>
+        </fieldset>
+
+        <fieldset class="question-card" data-required-question="3">
+          <legend><span class="question-number">۲۵</span><span class="question-title">چه سطحی از بحث برای شما مناسب‌تر است؟ <span class="required-star" aria-label="ضروری">*</span></span></legend>
+          <div class="level-examples">
+            <div class="level-example"><span class="level-tag beginner">مقدماتی</span><span>مروری بر چالش‌های پردازش زبان طبیعی در فارسی</span></div>
+            <div class="level-example"><span class="level-tag intermediate">متوسط</span><span>آموزش نرم‌افزارهای واژه‌نمای نسل سوم</span></div>
+            <div class="level-example"><span class="level-tag advanced">تخصصی</span><span>سبک‌سنجی ادبی و یادگیری بی‌نظارت</span></div>
+          </div>
+          <div class="option-grid option-grid-three">
+            <label class="choice-card"><input type="radio" name="discussionLevel" value="مقدماتی" required><span class="custom-radio"></span><span class="choice-label">مقدماتی</span></label>
+            <label class="choice-card"><input type="radio" name="discussionLevel" value="متوسط"><span class="custom-radio"></span><span class="choice-label">متوسط</span></label>
+            <label class="choice-card"><input type="radio" name="discussionLevel" value="تخصصی"><span class="custom-radio"></span><span class="choice-label">تخصصی</span></label>
+          </div>
+          <p class="field-error" data-error-for="discussionLevel" hidden>لطفاً یک سطح انتخاب کنید.</p>
+        </fieldset>
+
+        <fieldset class="question-card" data-required-question="4">
+          <legend><span class="question-number">۲۶</span><span class="question-title">در حال حاضر خود را چه نوع مخاطبی می‌دانید؟ <span class="required-star" aria-label="ضروری">*</span></span></legend>
+          <div class="option-grid">
+            <label class="choice-card"><input type="radio" name="audienceType" value="دانشجوی کارشناسی" required><span class="custom-radio"></span><span class="choice-label">دانشجوی کارشناسی</span></label>
+            <label class="choice-card"><input type="radio" name="audienceType" value="دانشجوی کارشناسی ارشد یا دکتری"><span class="custom-radio"></span><span class="choice-label">دانشجوی کارشناسی ارشد یا دکتری</span></label>
+            <label class="choice-card"><input type="radio" name="audienceType" value="پژوهشگر حوزه زبان"><span class="custom-radio"></span><span class="choice-label">پژوهشگر حوزه زبان</span></label>
+            <label class="choice-card"><input type="radio" name="audienceType" value="استاد دانشگاه"><span class="custom-radio"></span><span class="choice-label">استاد دانشگاه</span></label>
+            <label class="choice-card"><input type="radio" name="audienceType" value="علاقه‌مند به مطالعات زبانی"><span class="custom-radio"></span><span class="choice-label">علاقه‌مند به مطالعات زبانی</span></label>
+            <label class="choice-card"><input type="radio" name="audienceType" value="سایر موارد" data-reveals="audienceOther"><span class="custom-radio"></span><span class="choice-label">سایر موارد</span></label>
+          </div>
+          <div id="audienceOtherWrap" class="other-answer" hidden><label for="audienceOther">عنوان یا توضیح کوتاه</label><input id="audienceOther" type="text" maxlength="500" placeholder="نقش یا وضعیت دیگری که دارید…"></div>
+          <p class="field-error" data-error-for="audienceType" hidden>لطفاً یک گزینه انتخاب کنید.</p>
+        </fieldset>
+
+        <fieldset class="question-card" data-required-question="5">
+          <legend><span class="question-number">۲۷</span><span class="question-title">هدف شما از شرکت در یک وبینار چیست؟ <span class="required-star" aria-label="ضروری">*</span></span></legend>
+          <p class="question-help">همه هدف‌های مرتبط را انتخاب کنید.</p>
+          <div class="option-grid">
+            <label class="choice-card"><input type="checkbox" name="webinarGoals" value="کسب دانش عمومی"><span class="custom-check"></span><span class="choice-label">کسب دانش عمومی</span></label>
+            <label class="choice-card"><input type="checkbox" name="webinarGoals" value="یافتن ایده‌های پژوهشی"><span class="custom-check"></span><span class="choice-label">یافتن ایده‌های پژوهشی</span></label>
+            <label class="choice-card"><input type="checkbox" name="webinarGoals" value="آشنایی با موضوعی جدید"><span class="custom-check"></span><span class="choice-label">آشنایی با موضوعی جدید</span></label>
+            <label class="choice-card"><input type="checkbox" name="webinarGoals" value="آشنایی با دانش و شهرت ارائه‌دهنده"><span class="custom-check"></span><span class="choice-label">آشنایی با دانش و شهرت ارائه‌دهنده</span></label>
+            <label class="choice-card"><input type="checkbox" name="webinarGoals" value="امکان تعریف پژوهش مشترک با مدعو"><span class="custom-check"></span><span class="choice-label">امکان تعریف پژوهش مشترک با مدعو</span></label>
+            <label class="choice-card"><input type="checkbox" name="webinarGoals" value="سایر موارد" data-reveals="goalsOther"><span class="custom-check"></span><span class="choice-label">سایر موارد</span></label>
+          </div>
+          <div id="goalsOtherWrap" class="other-answer" hidden><label for="goalsOther">هدف دیگر شما</label><input id="goalsOther" type="text" maxlength="500" placeholder="هدف دیگری که از شرکت در وبینار دارید…"></div>
+          <p class="field-error" data-error-for="webinarGoals" hidden>لطفاً دست‌کم یک هدف انتخاب کنید.</p>
+        </fieldset>
+      </section>
+
+      <section class="submit-panel" aria-labelledby="submitTitle">
+        <div class="submit-copy"><div class="submit-check" aria-hidden="true">✓</div><div><h2 id="submitTitle">از همراهی شما سپاسگزاریم</h2><p>پاسخ‌های شما به برنامه‌ریزی موضوع‌ها و قالب‌های متناسب‌تر برای وبینارهای آینده کمک می‌کند.</p></div></div>
+        <div class="submit-actions"><button type="submit" id="submitButton" class="submit-button"><span>ثبت پاسخ‌ها</span><span aria-hidden="true">←</span></button><button type="button" id="resetButton" class="reset-button">پاک کردن پاسخ‌ها</button></div>
+      </section>
+      <div id="formMessage" class="form-message" role="status" aria-live="polite" hidden></div>
+      <p class="privacy-note"><span aria-hidden="true">◈</span> در این فرم نام و ایمیل شما پرسیده نمی‌شود. لطفاً اطلاعات شناسایی یا محرمانه را در کادرهای توضیحی وارد نکنید.</p>
+    </form>
+  </main>
+
+  <footer class="site-footer"><span>فرم نیازسنجی وبینارهای حوزه زبان</span><span>با هدف برنامه‌ریزی بهتر، بر پایه علایق شما</span></footer>
+  <iframe name="responseFrame" id="responseFrame" title="پاسخ ارسال فرم" class="transport-frame" aria-hidden="true" tabindex="-1"></iframe>
+  <input id="honeypot" class="honeypot" type="text" name="website" autocomplete="off" tabindex="-1" aria-hidden="true">
+  <script src="config.js"></script>
+  <script src="survey-data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
